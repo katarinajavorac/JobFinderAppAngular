@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login-or-registration"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-content-custom">
+
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="ion-form-custom">
+    <ion-grid class="ion-grid-custom">
+     <!--  <ion-row>
+        <ion-col>
+          <ion-header collapse="condense">
+            <ion-toolbar>
+              <ion-title size="large" color="primary">Register Form</ion-title>
+            </ion-toolbar>
+          </ion-header>
+        </ion-col>
+      </ion-row> -->
+      <ion-list class="ion-list-custom">
+        <!-- Prvi red - dve kolone: ime i prezime -->
+        <ion-row>
+          <ion-col size-sm="8" offset-sm="2">
+            <ion-item lines="full">
+              <ion-label position="floating">Name</ion-label>
+              <ion-input type="text" formControlName="name"  class="ion-input-custom"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="8" offset-sm="2">
+            <ion-item lines="full">
+              <ion-label position="floating">Surname</ion-label>
+              <ion-input type="text" formControlName="surname" ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- Drugi red, jedna kolona, dva itema: email i password -->
+        <ion-row>
+          <ion-col size-sm="8" offset-sm="2">
+            <ion-item lines="full">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="registerForm?.get('email')?.invalid && registerForm?.get('email')?.touched">
+          <ion-col size-sm="8" offset-sm="2">
+            <p>Should be a valid email address.</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size-sm="8" offset-sm="2">
+            <ion-item lines="full">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="registerForm?.get('password')?.invalid && registerForm?.get('password')?.touched">
+          <ion-col size-sm="8" offset-sm="2">
+            <p>Should be minimum 7 characters long.</p>
+          </ion-col>
+        </ion-row>
+
+        <!-- Treci red, jedna kolona: dugme register -->
+        <ion-row class="ion-row-button">
+          <ion-col size-sm="8" offset-sm="2">
+            <ion-button type="submit" color="primary" shape="square" expand="block">Register</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-row-login">
+          <ion-col size-sm="8" offset-sm="2">
+            <ion-label>Already have an account?</ion-label>
+            <ion-button color="primary" shape="square" expand="block" (click)="toLogin()">Log In</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-grid>
+  </form>
+  
+</ion-content>
