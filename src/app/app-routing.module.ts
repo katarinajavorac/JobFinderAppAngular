@@ -1,29 +1,3 @@
-/* import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login-or-register',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login-or-register',
-    loadChildren: () => import('./auth/login-or-register/login-or-register.module').then(m => m.LoginOrRegisterPageModule)
-  },
-  // dodajte ovdje druge rute
-];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
-
- */
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from "./auth/auth.guard";
@@ -65,13 +39,15 @@ const routes: Routes = [
     path: 'login-or-register',
     loadChildren: () => import('./auth/login-or-register/login-or-register.module').then( m => m.LoginOrRegisterPageModule)
   },
-/*   {
-    path: 'mysuperheroes',
-    loadChildren: () => import('./mysuperheroes/mysuperheroes.module').then( m => m.MysuperheroesPageModule),
-    canLoad: [AuthGuard]
-  }, */
-
-
+  { 
+    path: 'my-profile',
+    loadChildren: () => import('./myProfile/myProfile.module').then( m => m.MyProfilePageModule),
+    canActivate: [AuthGuard] 
+  },
+  {
+    path: '**',
+    redirectTo: 'login-or-register'
+  }
 
 ];
 
